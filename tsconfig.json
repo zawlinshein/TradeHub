@@ -6,7 +6,8 @@
       "assets/*": ["./src/assets/*"],
       "components/*": ["./src/components/*"],
       "navigations/*": ["./src/navigations/*"],
-      "screens/*": ["./src/screens/*"]
+      "screens/*": ["./src/screens/*"],
+      "api/*": ["./src/api/*"]
     }
   }
 }

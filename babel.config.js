@@ -9,7 +9,9 @@ module.exports = {
         "assets": "./src/assets",
         "navigations": "./src/navigations",
         "screens": "./src/screens",
+        "api": "./src/api"
       }
-    }]
+    }],
+    'react-native-reanimated/plugin',
   ]
 };
