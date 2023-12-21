@@ -3,7 +3,7 @@ import {
   View,
 } from 'react-native';
 import {styles} from './styles/style';
-import { myProfileHook } from './hooks/myProfileHook';
+import { myProfileHook } from './hooks/MyProfileHook';
 import {ImagePickerModal} from './imagepicker/ImagePickerModal'
 import { ImagePickerAvatar } from './imagepicker/ImagePickerAvator'
 import { ImagePickerHeader } from './imagepicker/ImagePickerHeader';

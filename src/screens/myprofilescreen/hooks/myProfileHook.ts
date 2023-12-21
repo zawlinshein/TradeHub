@@ -7,6 +7,7 @@ import {
   CameraOptions,
   ImagePickerResponse,
 } from 'react-native-image-picker';
+import {writeFile} from 'react-native-fs'
 
 const options: ImageLibraryOptions | CameraOptions = {
   selectionLimit: 1,
@@ -25,7 +26,7 @@ export const myProfileHook = () => {
   const [pickerResponse, setPickerResponse] = useState<string | undefined>();
   const [visible, setVisible] = useState(false);
 
-  const onImageLibraryPress = useCallback(() => {
+  const onImageLibraryPress = () => {
     launchImageLibrary(options, response => {
       console.log('camera response', response);
       if (
@@ -41,7 +42,7 @@ export const myProfileHook = () => {
         console.log('User cancelled camera or uri not available');
       }
     });
-  }, []);
+  };
 
   const requestCameraPermission = async () => {
     console.log('camera pressed so it should work');
@@ -66,6 +67,7 @@ export const myProfileHook = () => {
             response.assets.length > 0
           ) {
             const selectedImageUri: string | undefined = response.assets[0].uri;
+
             setPickerResponse(selectedImageUri);
           } else {
             console.log('User cancelled camera or uri not available');
