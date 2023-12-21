@@ -1,7 +1,6 @@
 import {ImageBackground} from 'react-native';
-import SearchBar from './SearchBar';
 import {FC} from 'react';
-import {Icon, MD2DarkTheme, MD3Colors} from 'react-native-paper';
+import {Icon, MD3Colors} from 'react-native-paper';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 type TopSectionProps = {

@@ -3,5 +3,7 @@
   "java.configuration.updateBuildConfiguration": "automatic",
   "editor.fontFamily": "Fira Code",
   "editor.fontLigatures": false,
-  "terminal.integrated.fontFamily": "Fira Code"
+  "terminal.integrated.fontFamily": "Fira Code",
+  "prettier.tabWidth": 4,
+  "java.project.sourcePaths": []
 }

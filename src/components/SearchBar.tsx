@@ -1,4 +1,4 @@
-import {ImageBackground, View, TextInput} from 'react-native';
+import {View, TextInput} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const SearchBar = () => {

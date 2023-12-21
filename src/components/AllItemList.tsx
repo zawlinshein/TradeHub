@@ -1,48 +1,45 @@
 import {Item} from '@/api/type';
 import {FC, memo} from 'react';
 import {
-  ActivityIndicator,
-  Animated,
   FlatList,
   ImageBackground,
   ListRenderItem,
-  ScrollView,
   Text,
   View,
 } from 'react-native';
-import {Skeleton, SkeletonPlaceHolder} from './Skeleton';
-import {FetchNextPageOptions} from '@tanstack/react-query';
-
-
+import {SkeletonPlaceHolder} from './Skeleton';
 
 export const AllItemList: FC<{
   items: Item[];
   hasNextPage: boolean;
   fetchNextPage: () => void;
   isFetchingNextPage: boolean;
-}> = ({items, hasNextPage, fetchNextPage, isFetchingNextPage}) => (
-  <View style={{minHeight: 150}}>
-    <Text
-      style={{
-        backgroundColor: 'red',
-        padding: 10,
-        marginTop: 12,
-        color: 'white',
-      }}>
-      Cats
-    </Text>
-    {items.length !== 0 ? (
-      <ItemListView
-        items={items}
-        hasNextPage={hasNextPage}
-        fetchNextPage={fetchNextPage}
-        isFetchingNextPage={isFetchingNextPage}
-      />
-    ) : (
-      <SkeletonPlaceHolder />
-    )}
-  </View>
-);
+}> = ({items, hasNextPage, fetchNextPage, isFetchingNextPage}) => {
+  console.log('screen ');
+  return (
+    <View style={{minHeight: 150}}>
+      <Text
+        style={{
+          backgroundColor: 'red',
+          padding: 10,
+          marginTop: 12,
+          color: 'white',
+        }}>
+        Cats
+      </Text>
+      {items.length !== 0 ? (
+        <ItemListView
+          items={items}
+          hasNextPage={hasNextPage}
+          fetchNextPage={fetchNextPage}
+          isFetchingNextPage={isFetchingNextPage}
+        />
+      ) : (
+        <SkeletonPlaceHolder />
+      )}
+    </View>
+  );
+};
 
 const renderItemFnc: ListRenderItem<Item> = ({item}): React.JSX.Element => {
   return (
@@ -101,5 +98,3 @@ const ItemListView: FC<{
     onEndReached={() => hasNextPage && fetchNextPage()}
   />
 ));
-
-

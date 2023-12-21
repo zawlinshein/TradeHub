@@ -1,9 +1,13 @@
-import MarketScreen from '@/screens/MarketScreen';
+import MarketScreen from '@/screens/marketscreen/MarketScreen';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import React from 'react';
-import {Icon, MD3Colors} from 'react-native-paper';
+import { MD3Colors} from 'react-native-paper';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import PlusSvgIcon from '../assets/svgicons/plus-svgrepo-com.svg';
+import { AddItemScreen } from '@/screens/additemscreen/AddItemScreen';
 
 const Tab = createMaterialBottomTabNavigator();
+
 
 function AppBottomNavigation() {
   return (
@@ -14,7 +18,7 @@ function AppBottomNavigation() {
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({color}) => (
-            <Icon source="tag" color={MD3Colors.primary50} size={20} />
+            <Icon name="tag" color={MD3Colors.primary50} size={20} />
           ),
         }}
       />
@@ -28,6 +32,21 @@ function AppBottomNavigation() {
           ),
         }}
       /> */}
+      <Tab.Screen
+        name="CreateItemScreen"
+        component={AddItemScreen}
+        options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: ({color}) => (
+            <PlusSvgIcon
+              width={30}
+              height={30}
+              color={MD3Colors.primary50}
+              fill={MD3Colors.primary50}
+            />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }
