@@ -1,4 +1,4 @@
-import {Item} from '@/api/type';
+import {Item} from '@/@types/type';
 import {FC, memo} from 'react';
 import {
   FlatList,
@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import {SkeletonPlaceHolder} from './Skeleton';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export const AllItemList: FC<{
   items: Item[];
@@ -43,8 +43,8 @@ export const AllItemList: FC<{
 };
 
 const renderItemFnc: ListRenderItem<Item> = ({item}): React.JSX.Element => {
-  console.log(item._id)
-  
+  console.log(item._id);
+
   return (
     <TouchableOpacity>
       <View

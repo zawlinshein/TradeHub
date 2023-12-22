@@ -35,7 +35,6 @@
     "react-native-fs": "^2.20.0",
     "react-native-gesture-handler": "^2.14.0",
     "react-native-get-random-values": "^1.10.0",
-    "react-native-image-base64-png": "^0.2.1",
     "react-native-image-picker": "^7.1.0",
     "react-native-linear-gradient": "^2.8.3",
     "react-native-modal": "^13.0.1",

@@ -1,4 +1,4 @@
-import {Item} from '@/api/type';
+import {Item} from '@/@types/type';
 import {useInfiniteQuery} from '@tanstack/react-query';
 import {AxiosResponse} from 'axios';
 import {useEffect, useState} from 'react';
@@ -21,7 +21,10 @@ export const allData = () => {
         `/items?_page=${pageParam}&_limit=10`,
       );
       let currentPage = pageParam;
-      let nextPage = currentPage < (await axiosInstance.get('/items')).data.length ? currentPage + 1 : null;
+      let nextPage =
+        currentPage < (await axiosInstance.get('/items')).data.length
+          ? currentPage + 1
+          : null;
       return {
         resData: res.data,
         nextPage,

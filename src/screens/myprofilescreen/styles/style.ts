@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
   avatar: {
     alignItems: 'center',
     marginTop: '40%',
+    position: 'relative'
   },
   avatarImage: {
     height: 260,
@@ -23,7 +24,7 @@ export const styles = StyleSheet.create({
     borderRadius: 50,
     position: 'absolute',
     right: 104,
-    bottom: 40,
+    bottom: 80,
   },
   addButtonIcon: {
     height: 54,

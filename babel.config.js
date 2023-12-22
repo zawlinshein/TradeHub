@@ -10,7 +10,8 @@ module.exports = {
         "navigations": "./src/navigations",
         "screens": "./src/screens",
         "api": "./src/api",
-        "lib": "./src/lib"
+        "lib": "./src/lib",
+        "utils": "./src/utils"
       }
     }],
     'react-native-reanimated/plugin',

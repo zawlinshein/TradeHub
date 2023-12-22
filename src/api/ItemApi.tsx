@@ -1,7 +1,7 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, {AxiosResponse} from 'axios';
 import {useEffect, useState} from 'react';
-import {Item} from './type';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import {Item} from '../@types/type';
+import {useInfiniteQuery} from '@tanstack/react-query';
 
 axios.defaults.baseURL = 'http://10.1.40.165:3000';
 
