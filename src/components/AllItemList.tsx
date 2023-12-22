@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native';
 import {SkeletonPlaceHolder} from './Skeleton';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export const AllItemList: FC<{
   items: Item[];
@@ -42,19 +43,23 @@ export const AllItemList: FC<{
 };
 
 const renderItemFnc: ListRenderItem<Item> = ({item}): React.JSX.Element => {
+  console.log(item._id)
+  
   return (
-    <View
-      style={{
-        width: 100,
-        height: 120,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
-      <ImageBackground
-        style={{width: '100%', height: 100}}
-        source={{uri: 'http://placekitten.com/300/300'}}>
-        <Text
+    <TouchableOpacity>
+      <View
+        style={{
+          width: 100,
+          height: 120,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <ImageBackground
+          resizeMode="cover"
+          style={{width: '100%', height: 100}}
+          source={{uri: `data:image/jpeg;base64,${item.picture}`}}>
+          {/* <Text
           style={{
             color: 'red',
             padding: item.sold ? 3 : 0,
@@ -65,11 +70,12 @@ const renderItemFnc: ListRenderItem<Item> = ({item}): React.JSX.Element => {
             marginEnd: 5,
           }}>
           {item.sold ? 'sold out' : ''}
-        </Text>
-      </ImageBackground>
-      <Text>{item.price}</Text>
-      <Text>{item.discount}</Text>
-    </View>
+        </Text> */}
+        </ImageBackground>
+        {/* <Text>{item.price}</Text>
+      <Text>{item.discount}</Text> */}
+      </View>
+    </TouchableOpacity>
   );
 };
 
@@ -88,7 +94,6 @@ const ItemListView: FC<{
     horizontal={true}
     style={{
       paddingVertical: 12,
-      backgroundColor: 'pink',
       height: 150,
     }}
     data={items}

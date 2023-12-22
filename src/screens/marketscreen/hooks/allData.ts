@@ -21,7 +21,7 @@ export const allData = () => {
         `/items?_page=${pageParam}&_limit=10`,
       );
       let currentPage = pageParam;
-      let nextPage = currentPage < 7 ? currentPage + 1 : null;
+      let nextPage = currentPage < (await axiosInstance.get('/items')).data.length ? currentPage + 1 : null;
       return {
         resData: res.data,
         nextPage,

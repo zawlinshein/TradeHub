@@ -107,7 +107,7 @@ const InputController: FC<{
       name={name}
       render={({field: {value, onChange, onBlur}, fieldState: {error}}) => {
         return (
-          <CustomTextInput
+          <CustomTextInput  
             value={value}
             onChanageText={
               name === 'age'
