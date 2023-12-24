@@ -4,6 +4,12 @@ import {useMutation} from '@tanstack/react-query';
 import {useForm, SubmitHandler, SubmitErrorHandler} from 'react-hook-form';
 import {mySchema, FormField} from '../types/formTypes';
 
+export const onInvalid: SubmitErrorHandler<{
+  name: string;
+  age: number;
+  email: string;
+}> = errors => console.error(errors);
+
 export const registerHook = () => {
   const {control, handleSubmit, reset, setValue, setError} = useForm<FormField>(
     {
@@ -26,12 +32,6 @@ export const registerHook = () => {
       console.log(data);
     },
   });
-
-  const onInvalid: SubmitErrorHandler<{
-    name: string;
-    age: number;
-    email: string;
-  }> = errors => console.error(errors);
 
   const onSubmitHandler: SubmitHandler<FormField> = async value => {
     const result = await mutateAsync(value);

@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
     borderRadius: 50,
     position: 'absolute',
     right: 104,
-    bottom: 80,
+    bottom: 40,
   },
   addButtonIcon: {
     height: 54,

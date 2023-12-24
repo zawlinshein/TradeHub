@@ -1,16 +1,19 @@
 export type Item = {
   _id: string;
-  price: string;
-  picture: string;
-  sold: boolean;
+  name: string;
+  quantity: number;
+  price: number;
+  type: string;
+  discount?: number;
   tags: number[];
-  discount: 'string';
+  picture?: string;
+  sold?: boolean;
 };
 
 export type User = {
   _id: string;
   name: string;
   email: string;
-  picture: string;
+  picture?: string;
   age: number;
 }

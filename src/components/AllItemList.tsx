@@ -91,6 +91,7 @@ const ItemListView: FC<{
       gap: 10,
       paddingHorizontal: 12,
     }}
+    showsHorizontalScrollIndicator={false}
     horizontal={true}
     style={{
       paddingVertical: 12,

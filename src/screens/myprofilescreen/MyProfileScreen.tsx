@@ -8,7 +8,7 @@ import {ImagePickerModal} from './imagepicker/ImagePickerModal'
 import { ImagePickerAvatar } from './imagepicker/ImagePickerAvator'
 import { ImagePickerHeader } from './imagepicker/ImagePickerHeader';
 
-export default function MyProfileScreen() {
+export default function MyProfileScreen({navigation}) {
 
   const {
     pickerResponse,
@@ -22,7 +22,7 @@ export default function MyProfileScreen() {
 
   return (
     <View style={styles.screen}>
-      <ImagePickerHeader />
+      <ImagePickerHeader navigation={navigation}/>
       <ImagePickerAvatar
         pickerResponse={pickerResponse}
         onPress={() => setVisible(true)}

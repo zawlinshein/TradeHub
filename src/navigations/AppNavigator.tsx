@@ -10,6 +10,7 @@ import {RegisterScreen} from '@/screens/RegisterScreen/RegisterScreen';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import MyProfileScreen from '@/screens/myprofilescreen/MyProfileScreen';
 import { CustomSidebarMenu } from '@/components/CustomeSideBarMenu';
+import LoginScreen from '@/screens/loginscreen/LoginScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -19,7 +20,7 @@ const Tab = createMaterialBottomTabNavigator();
 
 function AppBottomNavigation() {
   return (
-    <Tab.Navigator initialRouteName="Cats" labeled={false}>
+    <Tab.Navigator screenOptions={{tabBarColor:'black'}} initialRouteName="Cats" labeled={false}>
       <Tab.Screen
         name="MarkerScreen"
         component={MarketScreen}
@@ -83,21 +84,38 @@ export const CreateDrawer = () => {
         name="Home"
         component={AppBottomNavigation}
         options={{
-          drawerIcon: () => <Icon name="home" size={20} color={'black'} />,
+          drawerIcon: () => <Icon name="home" size={16} color={'black'} />,
         }}
       />
       <Drawer.Screen
         name="Register"
         component={FirstScreenStack}
         options={{
-          drawerIcon: () => <Icon name="wpforms" size={20} color={'black'} />,
+          drawerIcon: () => <Icon name="wpforms" size={16} color={'black'} />,
         }}
       />
+
       <Drawer.Screen
         name="MyProfileScreen"
         component={MyProfileScreen}
         options={{
-          drawerIcon: () => <Icon name="wpforms" size={20} color={'black'} />,
+          drawerIcon: () => <Icon name="wpforms" size={16} color={'black'} />,
+        }}
+      />
+      <Drawer.Screen
+        name="LoginScreen"
+        component={LoginScreen}
+        options={{
+          drawerIcon: () => <Icon name="sign-in" size={16} color={'black'} />,
+          title: 'Sign in',
+        }}
+      />
+      <Drawer.Screen
+        name="Logout"
+        component={LoginScreen}
+        options={{
+          drawerIcon: () => <Icon name="sign-out" size={16} color={'black'} />,
+          title: 'Sign out',
         }}
       />
     </Drawer.Navigator>

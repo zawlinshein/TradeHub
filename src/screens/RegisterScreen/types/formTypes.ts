@@ -1,6 +1,7 @@
 import z from 'zod'
 
 export const mySchema = z.object({
+  _id: z.string().uuid(),
   name: z
     .string({required_error: 'Name is required'})
     .min(4, 'Name must be min 4'),
@@ -12,6 +13,7 @@ export const mySchema = z.object({
     .string({required_error: 'Email is required'})
     .email({message: 'Invalid Email Address'})
     .trim(),
+  picture: z.string()
 });
 
 export type FormField = z.infer<typeof mySchema>;
@@ -28,4 +30,11 @@ export type CustomTextInputProps = {
     | 'phone-pad';
   placeholder?: string;
   error?: {message?: string};
+  icon?: Icon
 }
+
+export type Icon = {
+  iconName: string;
+  iconColor: string;
+  iconSize: number;
+};

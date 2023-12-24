@@ -6,15 +6,12 @@ import {AllItemList} from '@/components/AllItemList';
 import {QueryClient} from '@tanstack/react-query';
 import { allData } from './hooks/allData';
 
-
-const queryClient = new QueryClient();
-
 const MarketScreen: FC = ({navigation}) => {
 
   const {items, hasNextPage, fetchNextPage, isFetchingNextPage} = allData()
 
   return (
-    <View>
+    <>
       <TopSection sideBar={navigation} />
       <ScrollView contentContainerStyle={Styles.itemListContainer}>
         <AllItemList
@@ -24,7 +21,7 @@ const MarketScreen: FC = ({navigation}) => {
           isFetchingNextPage={isFetchingNextPage}
         />
       </ScrollView>
-    </View>
+    </>
   );
 };
 
