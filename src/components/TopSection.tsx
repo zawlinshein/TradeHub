@@ -1,4 +1,4 @@
-import {ImageBackground} from 'react-native';
+import {Dimensions, ImageBackground} from 'react-native';
 import {FC} from 'react';
 import {Icon, MD3Colors} from 'react-native-paper';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -8,23 +8,33 @@ type TopSectionProps = {
   sideBar: any;
 }
 
+const SCREEN_HEIGHT = Dimensions.get('window').height;
+
+const imageHeight = (SCREEN_HEIGHT / 100) * 30;
+
 const TopSection: FC<TopSectionProps> = ({children, sideBar}) => {
   return (
     <ImageBackground
       style={{
         width: '100%',
-        height: 150,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
         paddingBottom: 10,
         paddingHorizontal: 10,
-        backgroundColor: '#000',
+        height: imageHeight,
       }}
-      source={{uri: 'http://placekitten.com/300/300'}}>
+      resizeMode="cover"
+      source={{uri: 'http://placekitten.com/300/400'}}
+      imageStyle={{
+        width: '100%',
+        height: '100%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+      }}>
       <TouchableOpacity
         onPress={() => sideBar.openDrawer()}
-        style={{alignSelf: 'flex-start'}}>
+        style={{alignSelf: 'flex-start', marginTop: 24}}>
         <Icon
           size={35}
           color={MD3Colors.neutralVariant99}

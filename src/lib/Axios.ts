@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { BASE_URL } from '@/config';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://10.1.40.195:3000',
+  baseURL: BASE_URL,
   timeout: 10000,
   timeoutErrorMessage: 'connection time out',
 });

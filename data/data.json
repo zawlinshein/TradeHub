@@ -1,19 +1,26 @@
 {
-  "items": [
-    
-  ],
+  "items": [],
   "users": [
     {
       "name": "Dndjj",
       "age": 36,
       "email": "Jdsj@gmail.com",
+      "password": "12345678",
       "id": "145418c7-efa4-45dc-b686-95386145739e"
     },
     {
       "name": "papa ya",
       "age": 33,
       "email": "Ghhh@gmail.com",
+      "password": "12345678",
       "id": "b56274a8-89d2-4996-9329-5e0b6e4b7f92"
+    },
+    {
+      "name": "Zawlin",
+      "age": 36,
+      "email": "Dd@gmail.com",
+      "password": "12345678",
+      "id": "2a597584-9a07-42da-8c49-59a6ab72f5ef"
     }
   ]
 }

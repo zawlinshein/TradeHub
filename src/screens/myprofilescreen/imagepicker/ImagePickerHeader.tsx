@@ -15,11 +15,12 @@ export function ImagePickerHeader({navigation}) {
           alignItems: 'center',
           paddingLeft: 8,
           gap: 16,
+          paddingTop: 24
         },
       ]}>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
+      {/* <TouchableOpacity onPress={() => navigation.goBack()}>
         <Icon size={30} color="blue" name={'arrow-circle-left'} />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <View style={styles.topBar}>
         <Text style={styles.topBarTitleText}>Avatar Picker</Text>
       </View>

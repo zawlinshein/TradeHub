@@ -8,6 +8,7 @@ export const onInvalid: SubmitErrorHandler<{
   name: string;
   age: number;
   email: string;
+  password: string;
 }> = errors => console.error(errors);
 
 export const registerHook = () => {
@@ -17,6 +18,7 @@ export const registerHook = () => {
         name: '',
         age: 0,
         email: '',
+        password: '',
       },
       resolver: zodResolver(mySchema),
     },

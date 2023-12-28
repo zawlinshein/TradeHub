@@ -12,8 +12,8 @@ const MarketScreen: FC = ({navigation}) => {
 
   return (
     <>
-      <TopSection sideBar={navigation} />
       <ScrollView contentContainerStyle={Styles.itemListContainer}>
+        <TopSection sideBar={navigation} />
         <AllItemList
           items={items}
           hasNextPage={hasNextPage}
@@ -30,6 +30,6 @@ export default MarketScreen;
 const Styles = StyleSheet.create({
   itemListContainer: {
     flexDirection: 'column',
-    paddingBottom: 150,
+    paddingBottom: 16
   },
 });

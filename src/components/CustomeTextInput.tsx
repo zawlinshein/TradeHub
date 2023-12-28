@@ -51,7 +51,7 @@ type InputType = {
 }
 
 export const InputController: FC<{
-  name: 'name' | 'age' | 'email' | 'price' | 'discount' | 'quantity' | 'type' | 'picture';
+  name: 'name' | 'age' | 'email' | 'price' | 'discount' | 'quantity' | 'type' | 'picture' | 'password';
   control: Control<any>;
   Component: React.FunctionComponent<CustomTextInputProps>;
   keyboardType?:

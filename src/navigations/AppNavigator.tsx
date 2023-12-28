@@ -9,8 +9,9 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {RegisterScreen} from '@/screens/RegisterScreen/RegisterScreen';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import MyProfileScreen from '@/screens/myprofilescreen/MyProfileScreen';
-import { CustomSidebarMenu } from '@/components/CustomeSideBarMenu';
+import {CustomSidebarMenu} from '@/components/CustomeSideBarMenu';
 import LoginScreen from '@/screens/loginscreen/LoginScreen';
+import { NavigationContainer } from '@react-navigation/native';
 
 const Drawer = createDrawerNavigator();
 
@@ -20,7 +21,10 @@ const Tab = createMaterialBottomTabNavigator();
 
 function AppBottomNavigation() {
   return (
-    <Tab.Navigator screenOptions={{tabBarColor:'black'}} initialRouteName="Cats" labeled={false}>
+    <Tab.Navigator
+      screenOptions={{tabBarColor: 'black'}}
+      initialRouteName="Cats"
+      labeled={false}>
       <Tab.Screen
         name="MarkerScreen"
         component={MarketScreen}
@@ -35,7 +39,7 @@ function AppBottomNavigation() {
         name="CreateItemScreen"
         component={AddItemScreen}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: 'Add item',
           tabBarIcon: ({color}) => (
             <PlusSvgIcon
               width={30}
@@ -54,7 +58,15 @@ export default AppBottomNavigation;
 
 export const FirstScreenStack = () => {
   return (
-    <Stack.Navigator initialRouteName="FirstPage">
+    <Stack.Navigator initialRouteName="LoginScreen">
+      <Stack.Screen
+        name="LoginScreen"
+        component={LoginScreen}
+        options={{
+          //Set Header Title
+          headerShown: false,
+        }}
+      />
       <Stack.Screen
         name="RegisterScreen"
         component={RegisterScreen}
@@ -74,40 +86,34 @@ export const CreateDrawer = () => {
         headerShown: false,
         drawerStyle: {
           width: '80%',
-          height: '95%',
           borderTopEndRadius: 40,
-          marginTop: 34,
+          marginTop: 64,
         },
       }}
       drawerContent={props => <CustomSidebarMenu {...props} />}>
+        
       <Drawer.Screen
         name="Home"
         component={AppBottomNavigation}
         options={{
           drawerIcon: () => <Icon name="home" size={16} color={'black'} />,
+          swipeEnabled: false,
         }}
       />
-      <Drawer.Screen
-        name="Register"
-        component={FirstScreenStack}
-        options={{
-          drawerIcon: () => <Icon name="wpforms" size={16} color={'black'} />,
-        }}
-      />
-
       <Drawer.Screen
         name="MyProfileScreen"
         component={MyProfileScreen}
         options={{
           drawerIcon: () => <Icon name="wpforms" size={16} color={'black'} />,
+          swipeEnabled: false
         }}
       />
       <Drawer.Screen
-        name="LoginScreen"
-        component={LoginScreen}
+        name="Login"
+        component={FirstScreenStack}
         options={{
           drawerIcon: () => <Icon name="sign-in" size={16} color={'black'} />,
-          title: 'Sign in',
+          swipeEnabled: false
         }}
       />
       <Drawer.Screen

@@ -6,19 +6,29 @@ import {zodResolver} from '@hookform/resolvers/zod';
 import {useMutation} from '@tanstack/react-query';
 import React, {useState} from 'react';
 import {SubmitHandler, useForm} from 'react-hook-form';
-import {Image, ImageBackground, ScrollView, Text, View,TouchableOpacity, TouchableWithoutFeedback, Button, Pressable} from 'react-native';
+import {
+  Image,
+  ImageBackground,
+  ScrollView,
+  Text,
+  View,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  Button,
+  Pressable,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {getPictureFromCamera} from 'utils/photo/PhotoTaker';
 import z, {string} from 'zod';
-import { images } from "@/assets";
-import { onInvalid } from '../RegisterScreen/hooks/registerHook';
+import {images} from '@/assets';
+import {onInvalid} from '../RegisterScreen/hooks/registerHook';
 
 const itemSchema = z.object({
   name: z
     .string({required_error: 'name is required'})
     .min(1, 'Please enter name for the item'),
   quantity: z
-    .number({required_error: ' Quantity is required'})  
+    .number({required_error: ' Quantity is required'})
     .min(1, 'Put aleast one item please'),
   price: z.number({required_error: 'Price is required'}),
   discount: z.number().min(0).max(99),
@@ -76,28 +86,19 @@ export const AddItemScreen = ({navigation}) => {
 
   return (
     <>
-      <View style={{padding: 8}}>
+      <View style={{padding: 8, paddingTop: 24}}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Icon size={30} color="blue" name={'arrow-circle-left'} />
         </TouchableOpacity>
       </View>
-      <Pressable
-        style={({pressed}) => [
-          {
-            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
-          },
-        ]}>
-        {({pressed}) => (
-          <Text style={{}}>{pressed ? 'Pressed!' : 'Press Me'}</Text>
-        )}
-      </Pressable>
-      
+
       <ScrollView
         style={{}}
         contentContainerStyle={{
           flexDirection: 'column',
           height: '100%',
           paddingHorizontal: 10,
+          flexGrow: 1,
         }}>
         <TouchableOpacity
           onPress={() => onImageLibraryPress()}
