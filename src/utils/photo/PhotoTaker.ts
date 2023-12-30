@@ -6,14 +6,13 @@ import {
   launchImageLibrary,
 } from 'react-native-image-picker';
 import React from 'react';
-import { PermissionsAndroid } from 'react-native';
-import { options } from '@/@types/phototypes';
+import {PermissionsAndroid} from 'react-native';
+import {options} from '@/@types/phototypes';
 
 export type cameraProp = {
-  setPickerResponse: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setPickerResponse: React.Dispatch<React.SetStateAction<{}>>;
   options: ImageLibraryOptions | CameraOptions;
   camera?: boolean;
-  path: string;
 };
 
 export const permissions = [
@@ -26,23 +25,21 @@ export const launchLibraryOrCamera = ({
   setPickerResponse,
   options,
   camera = false,
-  path,
 }: cameraProp) => {
   if (camera) {
     launchCamera(options, response =>
-      cameraCallBackFunc(response, setPickerResponse, path),
+      cameraCallBackFunc(response, setPickerResponse),
     );
   } else {
     launchImageLibrary(options, response =>
-      cameraCallBackFunc(response, setPickerResponse, path),
+      cameraCallBackFunc(response, setPickerResponse),
     );
   }
 };
 
 const cameraCallBackFunc = (
   response: ImagePickerResponse,
-  setPickerResponse: React.Dispatch<React.SetStateAction<string | undefined>>,
-  path: string
+  setPickerResponse: React.Dispatch<React.SetStateAction<{}>>,
 ) => {
   console.log('camera response', response);
   if (
@@ -52,15 +49,16 @@ const cameraCallBackFunc = (
     response.assets.length > 0
   ) {
     const selectedImageUri: string | undefined = response.assets[0].uri;
+    const base64Image = response.assets[0].base64;
     console.log('selected from storage', selectedImageUri);
-    setPickerResponse(selectedImageUri);
+    setPickerResponse({selectedImageUri, base64Image});
   } else {
     console.log('User cancelled camera or uri not available');
   }
 };
 
 export const getPictureFromCamera = async (
-  setPickerResponse: React.Dispatch<React.SetStateAction<string | undefined>>,
+  setPickerResponse: React.Dispatch<React.SetStateAction<{}>>,
 ) => {
   try {
     const granted = await PermissionsAndroid.requestMultiple(permissions);
@@ -73,7 +71,6 @@ export const getPictureFromCamera = async (
         setPickerResponse,
         options,
         camera: true,
-        path: '/items',
       });
     } else {
       console.log(
@@ -91,4 +88,3 @@ export const getPictureFromCamera = async (
     console.warn(err);
   }
 };
-

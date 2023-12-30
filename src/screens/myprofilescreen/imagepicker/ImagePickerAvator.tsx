@@ -21,7 +21,11 @@ export function ImagePickerAvatar({
       <View style={styles.avatar}>
         <Image
           style={styles.avatarImage}
-          source={pickerResponse ? {uri: pickerResponse.toString()}: images.avatar}
+          source={
+            pickerResponse.selectedImageUri
+              ? {uri: pickerResponse.selectedImageUri.toString()}
+              : images.avatar
+          }
         />
         <TouchableOpacity style={styles.addButton} onPress={onPress}>
           <Image style={styles.addButtonIcon} source={images.addButton} />

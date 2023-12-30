@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {SkeletonPlaceHolder} from './Skeleton';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const AllItemList: FC<{
   items: Item[];
@@ -18,7 +19,7 @@ export const AllItemList: FC<{
 }> = ({items, hasNextPage, fetchNextPage, isFetchingNextPage}) => {
   console.log('screen ');
   return (
-    <View style={{minHeight: 150}}>
+    <View style={{minHeight: 200}}>
       <Text
         style={{
           backgroundColor: 'red',
@@ -56,28 +57,61 @@ const renderItemFnc: ListRenderItem<Item> = ({item}): React.JSX.Element => {
           alignItems: 'center',
         }}>
         <ImageBackground
-          resizeMode="cover"
-          style={{width: '100%', height: 100}}
+          resizeMode="contain"
+          style={{width: '100%', height: '100%', backgroundColor:'rgba(0,0,0,.1)'}}
           source={{uri: `data:image/jpeg;base64,${item.picture}`}}>
-          {/* <Text
-          style={{
-            color: 'red',
-            padding: item.sold ? 3 : 0,
-            alignSelf: 'flex-end',
-            borderRadius: 20,
-            marginTop: 12,
-            backgroundColor: 'white',
-            marginEnd: 5,
-          }}>
-          {item.sold ? 'sold out' : ''}
-        </Text> */}
+          <Text
+            style={{
+              color: 'red',
+              padding: item.sold ? 3 : 0,
+              alignSelf: 'flex-end',
+              borderRadius: 20,
+              marginTop: 12,
+              backgroundColor: 'white',
+              marginEnd: 5,
+            }}>
+            {item.sold ? 'sold out' : ''}
+          </Text>
         </ImageBackground>
-        {/* <Text>{item.price}</Text>
-      <Text>{item.discount}</Text> */}
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Icon name="tags" size={16} color={'red'} />
+          <View style={{ display: 'flex' }}>
+            <View style={{
+              display: 'flex', flexDirection: 'row', gap: 1, justifyContent: 'center', alignItems: 'center'}}>
+
+            <Text
+              style={{
+                fontSize: 18,
+                color: 'green',
+                textAlign: 'center',
+              }}>
+              
+              {numberWithCommas(item.price)}
+              </Text>
+              <Text style={{color: 'black', fontWeight: 'bold'}}>
+                MMK
+              </Text>
+            </View>
+            <Text style={{fontSize: 16, color: 'red',}}>
+              
+              {item.discount}
+            </Text>
+          </View>
+        </View>
       </View>
     </TouchableOpacity>
   );
 };
+
+function numberWithCommas(x: number) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
 
 const ItemListView: FC<{
   items: Item[];
@@ -95,7 +129,7 @@ const ItemListView: FC<{
     horizontal={true}
     style={{
       paddingVertical: 12,
-      height: 150,
+      height: 170,
     }}
     data={items}
     ListFooterComponent={() => isFetchingNextPage && <SkeletonPlaceHolder />}

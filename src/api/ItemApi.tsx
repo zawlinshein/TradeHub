@@ -36,8 +36,9 @@ export const addItem = async (item: Item) => {
     console.log('user that going to be registered ', item);
     const a: AxiosResponse<Item> = await axiosInstance.post('/items', {
       ...item,
-      id: uuidv4(),
+      _id: uuidv4(),
     });
+    return a.data;
   } catch (error) {
     console.log('error occur');
     const e = error as AxiosError;

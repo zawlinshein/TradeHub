@@ -3,13 +3,16 @@ import {PermissionsAndroid} from 'react-native';
 import 'react-native-get-random-values';
 import {options} from '@/@types/phototypes';
 import {getPictureFromCamera, launchLibraryOrCamera} from '@/utils/photo/PhotoTaker';
+import { string } from 'zod';
 
 export const myProfileHook = () => {
-  const [pickerResponse, setPickerResponse] = useState<string | undefined>();
+  const [pickerResponse, setPickerResponse] = useState<{
+    
+  }>();
   const [visible, setVisible] = useState(false);
 
   const onImageLibraryPress = async () => {
-    launchLibraryOrCamera({setPickerResponse, options, path: '/items'});
+    launchLibraryOrCamera({setPickerResponse, options,});
   };
 
   const requestCameraPermission = async () => {

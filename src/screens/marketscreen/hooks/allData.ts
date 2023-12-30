@@ -36,7 +36,6 @@ export const allData = () => {
 
   useEffect(() => {
     if (data) {
-      console.log('why data are showing here ? ', data);
       data.pages.map(res => setItems(prev => [...prev, ...res.resData]));
     }
   }, [data]);

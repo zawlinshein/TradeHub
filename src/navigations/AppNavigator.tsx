@@ -31,7 +31,7 @@ function AppBottomNavigation() {
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({color}) => (
-            <Icon name="tag" color={MD3Colors.primary50} size={20} />
+            <Icon name="shopping-cart" color={MD3Colors.primary50} size={20} />
           ),
         }}
       />

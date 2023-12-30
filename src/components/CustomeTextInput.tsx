@@ -18,30 +18,37 @@ export const CustomTextInput: React.FC<CustomTextInputProps> = ({
   return (
     <View
       style={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
+        flexDirection: 'column',
         borderBottomColor: 'black',
         borderBottomWidth: 2,
       }}>
-      {icon && (
-        <Icon
-          name={icon.iconName}
-          color={icon.iconColor}
-          size={icon.iconSize}
+      <View
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        {icon && (
+          <Icon
+            name={icon.iconName}
+            color={icon.iconColor}
+            size={icon.iconSize}
+          />
+        )}
+        <TextInput
+          keyboardType={keyboardType}
+          value={value.toString()}
+          onChangeText={onChanageText}
+          onBlur={onBlur}
+          placeholderTextColor={'rgba(0,0,0,.5)'}
+          style={{flex: 1}}
+          placeholder={placeholder}
         />
+      </View>
+      {error?.message && (
+        <Text style={{fontSize: 16, color: 'red'}}>{error?.message}</Text>
       )}
-      <TextInput
-        keyboardType={keyboardType}
-        value={value.toString()}
-        onChangeText={onChanageText}
-        onBlur={onBlur}
-        placeholderTextColor={'rgba(0,0,0,.5)'}
-        style={{flex: 1}}
-        placeholder={placeholder}
-      />
-      <Text style={{fontSize: 16, color: 'red'}}>{error?.message}</Text>
     </View>
   );
 };
