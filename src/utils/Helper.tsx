@@ -1,4 +1,4 @@
-import { string } from "zod";
+import {string} from 'zod';
 
 export const generateSkeletonData = (
   count: number,
@@ -9,4 +9,4 @@ export const generateSkeletonData = (
 
 export const calculateDiscountedPrice = (discount: number, price: number) => {
   return price - Math.floor(price / discount) * 100;
-}
+};
