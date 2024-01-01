@@ -1,11 +1,7 @@
-import {Button, Text, View} from 'react-native';
-import {Control, Controller} from 'react-hook-form';
+import {View, Text} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import React, {FC} from 'react';
+import React from 'react';
 import {registerHook} from './hooks/registerHook';
-import User from './types/userType';
-import {CustomTextInputProps} from './types/formTypes';
 import { CustomTextInput, InputController } from '@/components/CustomeTextInput';
 
 export const RegisterScreen = ({navigation}) => {
@@ -13,12 +9,13 @@ export const RegisterScreen = ({navigation}) => {
 
   return (
     <View style={{padding: 8, flex: 1}}>
-      <View style={{ justifyContent: 'center', alignItems: 'center', width: '80%', marginTop: 'auto', marginBottom: 'auto', gap: 16, marginLeft: 'auto', marginRight: 'auto'}}>
+      <View style={{ width: '80%', marginTop: 'auto', marginBottom: 'auto', gap: 16, marginLeft: 'auto', marginRight: 'auto'}}>
         <InputController
           control={control}
           name={'age'}
           Component={CustomTextInput}
           keyboardType="number-pad"
+          
         />
         <InputController
           control={control}
@@ -38,8 +35,8 @@ export const RegisterScreen = ({navigation}) => {
           Component={CustomTextInput}
           placeholder="Add password here"
         />
-        <TouchableOpacity style={{display: 'flex', flexDirection: 'row', backgroundColor: 'blue', paddingVertical: 8, paddingHorizontal: 16, borderRadius: 20, }} onPress={handleSubmit(onSubmitHandler, onInvalid)}>
-          <Text style={{color: 'white'}}>register</Text>
+        <TouchableOpacity style={{backgroundColor: 'pink', paddingVertical: 8, paddingHorizontal: 16, borderRadius: 20, }} onPress={handleSubmit(onSubmitHandler, onInvalid)}>
+          <Text style={{color: 'white', textAlign: 'center'}}>register</Text>
         </TouchableOpacity>
       </View>
     </View>

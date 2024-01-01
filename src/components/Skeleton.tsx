@@ -1,10 +1,11 @@
 import {FC, useEffect, useRef} from 'react';
 import {Animated, ScrollView} from 'react-native';
 import {generateSkeletonData} from '@/utils/Helper';
+import { withDecay } from 'react-native-reanimated';
 
 type SkeletonProps = {
   width: number | string;
-  height: number;
+  height: number | string;
 };
 
 export const Skeleton: FC<SkeletonProps> = ({width, height}) => {
@@ -37,7 +38,7 @@ export const Skeleton: FC<SkeletonProps> = ({width, height}) => {
   return <Animated.View style={containerStyle} />;
 };
 
-const numberOfSkeleton = generateSkeletonData(20, {width: 100, height: 100});
+const numberOfSkeleton = generateSkeletonData(20, {width: 100, height: '100%'});
 
 export const SkeletonPlaceHolder = () => (
   <ScrollView
@@ -47,7 +48,10 @@ export const SkeletonPlaceHolder = () => (
       gap: 10,
       paddingHorizontal: 12,
       paddingVertical: 5,
-    }}>
+    }}
+    alwaysBounceHorizontal={true}
+  showsHorizontalScrollIndicator={false}>
+    
     {numberOfSkeleton.map(skeleton => (
       <Skeleton width={skeleton.width} height={skeleton.height} />
     ))}

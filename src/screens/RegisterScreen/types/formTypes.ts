@@ -1,3 +1,4 @@
+import { StyleProp, TextInputProps } from 'react-native';
 import z from 'zod'
 
 export const mySchema = z.object({
@@ -30,7 +31,8 @@ export type CustomTextInputProps = {
     | 'phone-pad';
   placeholder?: string;
   error?: {message?: string};
-  icon?: Icon
+  icon?: Icon,
+  // style: StyleProp<TextInputProps>
 }
 
 export type Icon = {

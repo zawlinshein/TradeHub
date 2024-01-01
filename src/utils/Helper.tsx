@@ -1,8 +1,7 @@
-import {string} from 'zod';
 
 export const generateSkeletonData = (
   count: number,
-  dimensions: {width: number | string; height: number},
+  dimensions: {width: number | string; height: number | string},
 ) => {
   return Array.from({length: count}, () => ({...dimensions}));
 };

@@ -7,6 +7,8 @@ import {CustomTextInput, InputController} from '@/components/CustomeTextInput';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { onInvalid } from '../RegisterScreen/hooks/registerHook';
 import {MMKV} from 'react-native-mmkv';
+import { tryLogin } from '@/features/signin&out/loginSlice';
+import { useDispatch } from 'react-redux';
 
 console.log(MMKV)
 
@@ -30,10 +32,15 @@ const LoginScreen = ({navigation}) => {
       },
       resolver: zodResolver(loginSchema),
     });
+  
+  const dispatch = useDispatch();
 
     const onSubmitHandler: SubmitHandler<loginFormField> = async value => {
-      console.log(value)
       
+      const response = await dispatch(tryLogin({ email: value.email, password: value.password }))
+
+      console.log(response)
+
       reset();
     };
 

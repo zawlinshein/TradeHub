@@ -7,13 +7,26 @@ import {User} from '../@types/type';
 export const SaveUser = async (user: User) => {
   try {
     console.log('user that going to be registered ', user);
-    const a: AxiosResponse<User> = await axiosInstance.post('/users', {
+    axiosInstance.post('/users', {
       ...user,
       id: uuidv4(),
     });
-  } catch (error) {
-    console.log('error occur');
-    const e = error as AxiosError;
-    console.log(JSON.stringify(e, null, 2));
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const getUser = async ({email, password}: User) => {
+  try {
+    console.log(
+      `login user email : ${email}, login user password : ${password}`,
+    );
+    const result: AxiosResponse<User> = await axiosInstance.get(
+      `/users?email=${email}&password=${password}`,
+    );
+
+    console.log('this is the return result : ', result.data);
+  } catch (err) {
+    throw err;
   }
 };

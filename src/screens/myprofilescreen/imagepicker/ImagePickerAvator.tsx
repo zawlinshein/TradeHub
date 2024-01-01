@@ -1,11 +1,17 @@
-import { Image, ImageBackground, Text, TouchableOpacity, View } from "react-native";
-import { styles } from "../styles/style";
-import { images } from "@/assets";
-import avator from 'assets/images/avatar.jpg'
+import {
+  Image,
+  ImageBackground,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import {styles} from '../styles/style';
+import {images} from '@/assets';
+import avator from 'assets/images/avatar.jpg';
 
-console.log('type of image from assets',typeof images.avatar)
-console.log(images)
-console.log(avator)
+console.log('type of image from assets', typeof images.avatar);
+console.log(images);
+console.log(avator);
 
 export function ImagePickerAvatar({
   pickerResponse,
@@ -14,6 +20,8 @@ export function ImagePickerAvatar({
   pickerResponse: any;
   onPress: any;
 }>): React.JSX.Element {
+  console.log('picker response : ', pickerResponse);
+
   return (
     <ImageBackground
       style={styles.imageBackground}
@@ -22,7 +30,7 @@ export function ImagePickerAvatar({
         <Image
           style={styles.avatarImage}
           source={
-            pickerResponse.selectedImageUri
+            pickerResponse?.selectedImageUri
               ? {uri: pickerResponse.selectedImageUri.toString()}
               : images.avatar
           }

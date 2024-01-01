@@ -19,16 +19,7 @@ export const AllItemList: FC<{
 }> = ({items, hasNextPage, fetchNextPage, isFetchingNextPage}) => {
   console.log('screen ');
   return (
-    <View style={{minHeight: 200}}>
-      <Text
-        style={{
-          backgroundColor: 'red',
-          padding: 10,
-          marginTop: 12,
-          color: 'white',
-        }}>
-        Cats
-      </Text>
+    <View style={{minHeight: 150}}>
       {items.length !== 0 ? (
         <ItemListView
           items={items}
@@ -50,8 +41,6 @@ const renderItemFnc: ListRenderItem<Item> = ({item}): React.JSX.Element => {
     <TouchableOpacity>
       <View
         style={{
-          width: 100,
-          height: 120,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',

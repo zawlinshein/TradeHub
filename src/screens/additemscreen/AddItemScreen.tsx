@@ -23,11 +23,11 @@ import z, {string} from 'zod';
 import {images} from '@/assets';
 import {onInvalid} from '../RegisterScreen/hooks/registerHook';
 import Modal from 'react-native-modal';
-import {v4 as uuidv4} from 'uuid'
-import { Item } from '@/@types/type';
-import 'react-native-get-random-values'
-import { ProgressViewIOSComponent } from 'react-native';
-import { calculateDiscountedPrice } from '@/utils/Helper';
+import {v4 as uuidv4} from 'uuid';
+import {Item} from '@/@types/type';
+import 'react-native-get-random-values';
+import {ProgressViewIOSComponent} from 'react-native';
+import {calculateDiscountedPrice} from '@/utils/Helper';
 
 const itemSchema = z.object({
   name: z
@@ -36,7 +36,9 @@ const itemSchema = z.object({
   quantity: z
     .number({required_error: ' Quantity is required'})
     .min(1, 'Put aleast one item please'),
-  price: z.number({required_error: 'Price is required'}).min(1000, "Item price should be greater than 1000"),
+  price: z
+    .number({required_error: 'Price is required'})
+    .min(1000, 'Item price should be greater than 1000'),
   discount: z.number().min(0).max(99),
   // tags: z.array(z.number()),
   // picture: z.string(),
@@ -62,15 +64,16 @@ export const AddItemScreen = ({navigation}) => {
     });
 
   const onSubmit: SubmitHandler<AddItemFromField> = async value => {
-
     const item: Item = {
       ...value,
       picture: picture.base64Image,
-      price: !value.discount ? value.price : calculateDiscountedPrice(value.discount, value.price),
+      price: !value.discount
+        ? value.price
+        : calculateDiscountedPrice(value.discount, value.price),
     };
 
     console.log(item);
-    console.log('lol')
+    console.log('lol');
     const result = await mutateAsync(item).catch(error => {
       console.log(error);
     });
@@ -101,126 +104,118 @@ export const AddItemScreen = ({navigation}) => {
   };
 
   return (
-    <>
-      <View style={{padding: 8, paddingTop: 24}}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Icon size={30} color="blue" name={'arrow-circle-left'} />
-        </TouchableOpacity>
-      </View>
-
-      <ScrollView
-        style={{}}
-        contentContainerStyle={{
-          flexDirection: 'column',
-          height: '100%',
-          paddingHorizontal: 10,
-          flexGrow: 1,
+    <ScrollView
+      style={{paddingTop: 24}}
+      contentContainerStyle={{
+        flexDirection: 'column',
+        height: '100%',
+        paddingHorizontal: 10,
+        flexGrow: 1,
+      }}>
+      <TouchableOpacity
+        // onPress={() => onImageLibraryPress()}
+        onPress={() => {
+          setModalShow(true);
+        }}
+        style={{
+          width: '80%',
+          height: '40%',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          marginBottom: 10,
+          borderRadius: 60,
+          overflow: 'hidden',
         }}>
-        <TouchableOpacity
-          // onPress={() => onImageLibraryPress()}
-          onPress={() => {
-            setModalShow(true);
+        <ImageBackground
+          imageStyle={{
+            width: '100%',
+            height: '100%',
           }}
-          style={{
-            width: '80%',
-            height: '40%',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            marginBottom: 10,
-            borderRadius: 60,
-            overflow: 'hidden',
-          }}>
-          <ImageBackground
-            imageStyle={{
+          resizeMode="cover"
+          source={images.camera}>
+          <Image
+            style={{
               width: '100%',
               height: '100%',
             }}
-            resizeMode="cover"
-            source={images.camera}>
-            <Image
-              style={{
-                width: '100%',
-                height: '100%',
-              }}
-              source={{uri: picture.selectedImageUri?.toString()}}
-            />
-          </ImageBackground>
-        </TouchableOpacity>
+            source={{uri: picture.selectedImageUri?.toString()}}
+          />
+        </ImageBackground>
+      </TouchableOpacity>
 
-        <InputController
-          control={control}
-          name={'name'}
-          Component={CustomTextInput}
-          placeholder="Add name here"
-          icon={{iconName: 'cart-plus', iconColor: 'black', iconSize: 24}}
-        />
-        <InputController
-          control={control}
-          name={'quantity'}
-          Component={CustomTextInput}
-          placeholder="Add item quantity here"
-          keyboardType={'number-pad'}
-        />
-        <InputController
-          control={control}
-          name={'price'}
-          Component={CustomTextInput}
-          placeholder="Add price here"
-          keyboardType={'number-pad'}
-          icon={{iconName: 'tag', iconColor: 'pink', iconSize: 20}}
-        />
-        <InputController
-          control={control}
-          name={'discount'}
-          Component={CustomTextInput}
-          placeholder="Add price here"
-          keyboardType={'number-pad'}
-          icon={{iconName: 'tag', iconColor: 'pink', iconSize: 20}}
-        />
-        <TouchableOpacity
+      <InputController
+        control={control}
+        name={'name'}
+        Component={CustomTextInput}
+        placeholder="Add name here"
+        icon={{iconName: 'cart-plus', iconColor: 'black', iconSize: 24}}
+      />
+      <InputController
+        control={control}
+        name={'quantity'}
+        Component={CustomTextInput}
+        placeholder="Add item quantity here"
+        keyboardType={'number-pad'}
+      />
+      <InputController
+        control={control}
+        name={'price'}
+        Component={CustomTextInput}
+        placeholder="Add price here"
+        keyboardType={'number-pad'}
+        icon={{iconName: 'tag', iconColor: 'pink', iconSize: 20}}
+      />
+      <InputController
+        control={control}
+        name={'discount'}
+        Component={CustomTextInput}
+        placeholder="Add price here"
+        keyboardType={'number-pad'}
+        icon={{iconName: 'tag', iconColor: 'pink', iconSize: 20}}
+      />
+      <TouchableOpacity
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'blue',
+          padding: 16,
+          marginTop: 8,
+        }}
+        onPress={handleSubmit(onSubmit, onInvalid)}>
+        <Text style={{color: 'white', fontSize: 16}}>RegisterItem</Text>
+      </TouchableOpacity>
+
+      <Modal
+        isVisible={modalShow}
+        style={{justifyContent: 'flex-end'}}
+        onBackdropPress={() => {
+          setModalShow(false);
+        }}>
+        <View
           style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: 'blue',
-            padding: 16,
-            marginTop: 8,
-          }}
-          onPress={handleSubmit(onSubmit, onInvalid)}>
-          <Text style={{color: 'white', fontSize: 16}}>RegisterItem</Text>
-        </TouchableOpacity>
-
-        <Modal
-          isVisible={modalShow}
-          style={{justifyContent: 'flex-end'}}
-          onBackdropPress={() => {
-            setModalShow(false);
+            width: '100%',
+            height: '40%',
+            backgroundColor: 'white',
+            borderTopEndRadius: 32,
+            borderTopStartRadius: 12,
+            position: 'absolute',
+            bottom: 0,
           }}>
-          <View
-            style={{
-              width: '100%',
-              height: '40%',
-              backgroundColor: 'white',
-              borderTopEndRadius: 32,
-              borderTopStartRadius: 12,
-              position: 'absolute',
-              bottom: 0,
+          <Text>I am the modal content!</Text>
+          <TouchableOpacity
+            onPress={() => {
+              onImageLibraryPress();
             }}>
-            <Text>I am the modal content!</Text>
-            <TouchableOpacity
-              onPress={() => {
-                onImageLibraryPress();
-              }}>
-              <Text>library</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                requestCameraPermission();
-              }}>
-              <Text>camera</Text>
-            </TouchableOpacity>
-          </View>
-        </Modal>
-      </ScrollView>
-    </>
+            <Text>library</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              requestCameraPermission();
+            }}>
+            <Text>camera</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
+    </ScrollView>
   );
 };

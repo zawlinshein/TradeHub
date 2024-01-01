@@ -1,10 +1,9 @@
-
 import {CustomTextInputProps} from '@/screens/RegisterScreen/types/formTypes';
 import {FC} from 'react';
 import {Control, Controller} from 'react-hook-form';
 import {Text, TextInput, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {Icon as IconType} from 'screens/RegisterScreen/types/formTypes'
+import {Icon as IconType} from 'screens/RegisterScreen/types/formTypes';
 
 export const CustomTextInput: React.FC<CustomTextInputProps> = ({
   value,
@@ -13,7 +12,7 @@ export const CustomTextInput: React.FC<CustomTextInputProps> = ({
   keyboardType = 'default',
   placeholder,
   error,
-  icon
+  icon,
 }) => {
   return (
     <View
@@ -42,7 +41,7 @@ export const CustomTextInput: React.FC<CustomTextInputProps> = ({
           onChangeText={onChanageText}
           onBlur={onBlur}
           placeholderTextColor={'rgba(0,0,0,.5)'}
-          style={{flex: 1}}
+          style={[{flex: 1, width: 200}]}
           placeholder={placeholder}
         />
       </View>
@@ -54,11 +53,20 @@ export const CustomTextInput: React.FC<CustomTextInputProps> = ({
 };
 
 type InputType = {
-  name: string
-}
+  name: string;
+};
 
 export const InputController: FC<{
-  name: 'name' | 'age' | 'email' | 'price' | 'discount' | 'quantity' | 'type' | 'picture' | 'password';
+  name:
+    | 'name'
+    | 'age'
+    | 'email'
+    | 'price'
+    | 'discount'
+    | 'quantity'
+    | 'type'
+    | 'picture'
+    | 'password';
   control: Control<any>;
   Component: React.FunctionComponent<CustomTextInputProps>;
   keyboardType?:
