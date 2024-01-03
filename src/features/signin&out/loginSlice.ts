@@ -1,9 +1,10 @@
 import axiosInstance from '@/lib/Axios';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {AppDispatch} from '@/app/store';
+import { AppDispatch } from '@/app/store';
+import { reduxStorage } from '@/app/storage';
 
 type loginUser = {
-  _id: number | null;
+  id: number | null;
   name: string | null;
   email: string | null;
   password: string | null;
@@ -15,7 +16,7 @@ type action = {
 };
 
 const initialState: loginUser = {
-  _id: null,
+  id: null,
   name: null,
   email: null,
   password: null,
@@ -46,6 +47,11 @@ const loginSlice = createSlice({
       return {...state, ...action.payload};
     },
     logOut(state) {
+      console.log('user is logging out', state, initialState)
+      const data = reduxStorage.getItem('persist:root')._j;
+
+      const parsedData = JSON.parse(data);
+      console.log(parsedData.auth ? true: false)
       return initialState;
     },
   },

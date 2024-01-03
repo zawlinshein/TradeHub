@@ -13,19 +13,14 @@ import CustomIcon, { Icons } from '@/assets/icons/Icon';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { reduxStorage, storage } from '@/app/storage';
-import {useMMKVString} from 'react-native-mmkv'
 
-console.log(reduxStorage.getItem('this suck'));
+const data = reduxStorage.getItem('persist:root')._j;
 
-console.log(reduxStorage.getItem('root'));
+const parsedData = JSON.parse(data)
 
-console.log('data from MMKV ? ',reduxStorage.getItem('persist:root'))
+console.log('data from MMKV ?', JSON.parse(parsedData.auth)['0'])
 
-console.log('all keys in MMKV : ',storage.getAllKeys())
-
-console.log(reduxStorage.getItem('persist:root') ? true : false)
-
-console.log('==============================')
+console.log()
 
 const Drawer = createDrawerNavigator();
 
@@ -192,14 +187,6 @@ export const CreateDrawer = () => {
         options={{
           drawerIcon: () => <Icon name="sign-in" size={16} color={'black'} />,
           swipeEnabled: false
-        }}
-      />
-      <Drawer.Screen
-        name="Logout"
-        component={LoginScreen}
-        options={{
-          drawerIcon: () => <Icon name="sign-out" size={16} color={'black'} />,
-          title: 'Sign out',
         }}
       />
     </Drawer.Navigator>

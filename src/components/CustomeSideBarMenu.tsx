@@ -5,6 +5,10 @@ import {
 } from '@react-navigation/drawer';
 import {FC} from 'react';
 import {Image, SafeAreaView, View, Text, StyleSheet} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import {logOut} from '@/features/signin&out/loginSlice';
+import {useDispatch} from 'react-redux';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const styles = StyleSheet.create({
   sideMenuProfileIcon: {
@@ -30,6 +34,12 @@ export const CustomSidebarMenu: FC<DrawerContentComponentProps> = props => {
   const BASE_PATH =
     'https://raw.githubusercontent.com/AboutReact/sampleresource/master/';
   const proileImage = 'react_logo.png';
+
+  const dispatch = useDispatch();
+
+  const signOut = () => {
+    dispatch(logOut());
+  };
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -66,6 +76,23 @@ export const CustomSidebarMenu: FC<DrawerContentComponentProps> = props => {
           </View>
         </View>
         <DrawerItemList {...props} />
+        <View>
+          <TouchableOpacity
+            onPress={() => {
+              signOut();
+            }}
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              gap: 24,
+              paddingHorizontal: 20,
+              paddingVertical: 20,
+            }}>
+            <Icon name="sign-out" color="black" size={16} />
+
+            <Text>Sign out</Text>
+          </TouchableOpacity>
+        </View>
       </DrawerContentScrollView>
     </SafeAreaView>
   );
